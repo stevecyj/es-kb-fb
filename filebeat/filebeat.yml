@@ -1,0 +1,26 @@
+filebeat.inputs:
+  - type: log
+    paths:
+      - '/var/log/dnsmasq.log'
+
+  # processors:
+  #   - add_docker_metadata:
+  #       host: 'unix:///var/run/docker.sock'
+
+  # - decode_json_fields:
+  #     fields: ['message']
+  #     target: 'json'
+  #     overwrite_keys: true
+
+output.elasticsearch:
+  hosts: ['elasticsearch:9200']
+  index: 'dnsmasq-%{[agent.version]}-%{+yyyy.MM.dd}'
+setup.template.name: 'dnsmasq'
+setup.template.pattern: 'dnsmasq-*'
+setup.ilm.enabled: false
+# logging.json: true
+# logging.metrics.enabled: false
+
+# output.console:
+#   pretty: true
+
