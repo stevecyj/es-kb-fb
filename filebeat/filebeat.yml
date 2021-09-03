@@ -13,7 +13,9 @@ filebeat.inputs:
   #     overwrite_keys: true
 
 output.elasticsearch:
-  hosts: ['elasticsearch:9200']
+  # hosts: ['elasticsearch:9200', '172.17.204.3:9200']
+  hosts: ['172.17.204.3:9200']
+  protocol: http
   index: 'dnsmasq-%{[agent.version]}-%{+yyyy.MM.dd}'
 setup.template.name: 'dnsmasq'
 setup.template.pattern: 'dnsmasq-*'
